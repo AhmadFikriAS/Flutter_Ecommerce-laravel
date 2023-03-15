@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "181164940512",
+    "project_id": "shamo-bwa-b651e",
+    "storage_bucket": "shamo-bwa-b651e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181164940512:android:bc5d141f51246fa6d10485",
+        "android_client_info": {
+          "package_name": "com.example.flutter_laravel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181164940512-bfksh4tvhmpsvthmnd3dit2b4lkhjlrs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD962SbT1laB5aZip-YsKDKmbsLEsrH_4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181164940512-bfksh4tvhmpsvthmnd3dit2b4lkhjlrs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
