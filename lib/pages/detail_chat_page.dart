@@ -7,9 +7,10 @@ import 'package:flutter_laravel/theme.dart';
 import 'package:flutter_laravel/widgets/chat_bubble.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class DetailChatPage extends StatefulWidget {
-  ProductModel product;
-  DetailChatPage(this.product);
+  late ProductModel product;
+  DetailChatPage(this.product, {Key? key}) : super(key: key);
 
   @override
   State<DetailChatPage> createState() => _DetailChatPageState();
@@ -46,7 +47,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 'assets/image_shop_logo_online.png',
                 width: 50,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 12,
               ),
               Column(
@@ -78,8 +79,8 @@ class _DetailChatPageState extends State<DetailChatPage> {
       return Container(
         width: 225,
         height: 74,
-        margin: EdgeInsets.only(bottom: 20),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: backgroundColor5,
           borderRadius: BorderRadius.circular(12),
@@ -93,11 +94,11 @@ class _DetailChatPageState extends State<DetailChatPage> {
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.network(
-                widget.product.galleries[0].url,
+                widget.product.galleries![0].url!,
                 width: 54,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Expanded(
@@ -106,11 +107,11 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    widget.product.name,
+                    widget.product.name!,
                     style: primaryTextStyle,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 2,
                   ),
                   Text(
@@ -141,20 +142,20 @@ class _DetailChatPageState extends State<DetailChatPage> {
     Widget chatInput() {
       return Container(
         padding: MediaQuery.of(context).viewInsets,
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             widget.product is UninitializedProductModel
-                ? SizedBox()
+                ? const SizedBox()
                 : productPreview(),
             Row(
               children: [
                 Expanded(
                   child: Container(
                     height: 45,
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 16,
                     ),
                     decoration: BoxDecoration(
@@ -173,7 +174,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 GestureDetector(
@@ -195,7 +196,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
     Widget content() {
       return StreamBuilder<List<MessageModel>>(
           stream: MessageService().getMessagesByUserId(
-            authProvider.user.id,
+            authProvider.user.id!,
           ),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
@@ -203,16 +204,16 @@ class _DetailChatPageState extends State<DetailChatPage> {
                 padding: EdgeInsets.symmetric(
                   horizontal: defaultMargin,
                 ),
-                children: snapshot.data
+                children: snapshot.data!
                     .map((message) => ChatBubble(
-                          isSender: message.isFromUser,
-                          text: message.message,
-                          product: message.product,
+                          isSender: message.isFromUser!,
+                          text: message.message!,
+                          product: message.product!,
                         ))
                     .toList(),
               );
             } else {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }

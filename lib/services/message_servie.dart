@@ -16,12 +16,12 @@ class MessageService {
         var result = list.docs.map<MessageModel>((DocumentSnapshot message) {
           print(message.data());
 
-          return MessageModel.fromJson(message.data());
+          return MessageModel.fromJson(message.data() as Map<String, dynamic>);
         }).toList();
 
         result.sort(
           (MessageModel a, MessageModel b) =>
-              a.createdAt.compareTo(b.createdAt),
+              a.createdAt!.compareTo(b.createdAt!),
         );
 
         return result;
@@ -32,18 +32,19 @@ class MessageService {
   }
 
   Future<void> addMessage(
-      {UserModel user,
-      bool isFromUser,
-      String message,
-      ProductModel product}) async {
+      {UserModel? user,
+      bool? isFromUser,
+      String? message,
+      ProductModel? product}) async {
     try {
       firestore.collection('messages').add({
-        'userId': user.id,
-        'userName': user.name,
+        'userId': user!.id!,
+        'userName': user.name!,
         'userImage': user.profilePhotoUrl,
         'isFromUser': isFromUser,
         'message': message,
-        'product': product is UninitializedProductModel ? {} : product.toJson(),
+        'product':
+            product is UninitializedProductModel ? {} : product!.toJson(),
         'createdAt': DateTime.now().toString(),
         'updatedAt': DateTime.now().toString(),
       }).then(

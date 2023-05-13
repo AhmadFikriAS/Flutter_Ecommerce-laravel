@@ -3,7 +3,7 @@ import 'package:flutter_laravel/models/user_model.dart';
 import 'package:flutter_laravel/services/auth_service.dart';
 
 class AuthProvider with ChangeNotifier {
-  UserModel _user;
+  late UserModel _user;
 
   UserModel get user => _user;
 
@@ -14,17 +14,17 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<bool> register({
-    String name,
-    String username,
-    String email,
-    String password,
+    String? name,
+    String? username,
+    String? email,
+    String? password,
   }) async {
     try {
       UserModel user = await AuthService().register(
-        name: name,
-        username: username,
-        email: email,
-        password: password,
+        name: name!,
+        username: username!,
+        email: email!,
+        password: password!,
       );
 
       _user = user;
@@ -36,13 +36,13 @@ class AuthProvider with ChangeNotifier {
   }
 
   Future<bool> login({
-    String email,
-    String password,
+    String? email,
+    String? password,
   }) async {
     try {
       UserModel user = await AuthService().login(
-        email: email,
-        password: password,
+        email: email!,
+        password: password!,
       );
 
       _user = user;

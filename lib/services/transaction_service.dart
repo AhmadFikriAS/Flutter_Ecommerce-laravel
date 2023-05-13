@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter_laravel/models/product_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_laravel/models/cart_model.dart';
 
@@ -20,7 +19,7 @@ class TransactionService {
         'items': carts
             .map(
               (cart) => {
-                'id': cart.product.id,
+                'id': cart.product!.id!,
                 'quantity': cart.quantity,
               },
             )
@@ -32,7 +31,7 @@ class TransactionService {
     );
 
     var response = await http.post(
-      url,
+      Uri.parse(url),
       headers: headers,
       body: body,
     );

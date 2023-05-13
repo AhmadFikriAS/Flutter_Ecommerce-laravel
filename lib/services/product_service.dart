@@ -12,7 +12,7 @@ class ProductService {
     var headers = {'Content-Type': 'application/json'};
 
     var response = await http.get(
-      url,
+      Uri.parse(url),
       headers: headers,
     );
 

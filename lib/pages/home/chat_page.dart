@@ -94,11 +94,11 @@ class ChatPage extends StatelessWidget {
     Widget content() {
       return StreamBuilder<List<MessageModel>>(
           stream: MessageService().getMessagesByUserId(
-            authProvider.user.id,
+            authProvider.user.id!,
           ),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              if (snapshot.data.length == 0) {
+              if (snapshot.data!.length == 0) {
                 return emptyChat();
               }
 
@@ -112,7 +112,7 @@ class ChatPage extends StatelessWidget {
                     ),
                     children: [
                       ChatTile(
-                        snapshot.data[snapshot.data.length - 1],
+                        snapshot.data![snapshot.data!.length - 1],
                       ),
                     ],
                   ),

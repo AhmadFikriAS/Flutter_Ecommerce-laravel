@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_laravel/providers/product_provider.dart';
 import 'package:flutter_laravel/theme.dart';

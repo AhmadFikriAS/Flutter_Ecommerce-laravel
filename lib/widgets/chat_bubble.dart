@@ -4,9 +4,9 @@ import 'package:flutter_laravel/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChatBubble extends StatelessWidget {
-  final String text;
-  final bool isSender;
-  final ProductModel product;
+  final String? text;
+  final bool? isSender;
+  final ProductModel? product;
 
   ChatBubble({
     this.text = '',
@@ -23,12 +23,12 @@ class ChatBubble extends StatelessWidget {
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(isSender ? 12 : 0),
-            topRight: Radius.circular(isSender ? 0 : 12),
+            topLeft: Radius.circular(isSender! ? 12 : 0),
+            topRight: Radius.circular(isSender! ? 0 : 12),
             bottomLeft: Radius.circular(12),
             bottomRight: Radius.circular(12),
           ),
-          color: isSender ? backgroundColor5 : backgroundColor4,
+          color: isSender! ? backgroundColor5 : backgroundColor4,
         ),
         child: Column(
           children: [
@@ -37,7 +37,7 @@ class ChatBubble extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(12),
                   child: Image.network(
-                    product.galleries[0].url,
+                    product!.galleries![0].url!,
                     width: 70,
                   ),
                 ),
@@ -49,14 +49,14 @@ class ChatBubble extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        product.name,
+                        product!.name!,
                         style: primaryTextStyle,
                       ),
                       SizedBox(
                         height: 4,
                       ),
                       Text(
-                        '\$${product.price}',
+                        '\$${product!.price}',
                         style: priceTextStlye.copyWith(
                           fontWeight: medium,
                         ),
@@ -119,12 +119,12 @@ class ChatBubble extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment:
-            isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            isSender! ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           product is UninitializedProductModel ? SizedBox() : productPreview(),
           Row(
             mainAxisAlignment:
-                isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
+                isSender! ? MainAxisAlignment.end : MainAxisAlignment.start,
             children: [
               Flexible(
                 child: Container(
@@ -137,15 +137,15 @@ class ChatBubble extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(isSender ? 12 : 0),
-                      topRight: Radius.circular(isSender ? 0 : 12),
+                      topLeft: Radius.circular(isSender! ? 12 : 0),
+                      topRight: Radius.circular(isSender! ? 0 : 12),
                       bottomLeft: Radius.circular(12),
                       bottomRight: Radius.circular(12),
                     ),
-                    color: isSender ? backgroundColor5 : backgroundColor4,
+                    color: isSender! ? backgroundColor5 : backgroundColor4,
                   ),
                   child: Text(
-                    text,
+                    text!,
                     style: primaryTextStyle,
                   ),
                 ),
